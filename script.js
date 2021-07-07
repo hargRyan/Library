@@ -1,4 +1,7 @@
 let myLibrary = [];
+const bookContainer = document.getElementById('book-container');
+const testBook = new Book('testtitle', 'test author', 23, true);
+addBookToLibrary(testBook);
 
 function Book(title, author, pages, hasRead) {
     this.title = title;
@@ -19,5 +22,14 @@ function createBook() {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
+}
+
+function displayBooks(bookArray) {
+    bookArray.forEach(book => {
+        let div = document.createElement('div');
+        div.classList.add("book");
+        div.textContent = book.title;
+        bookContainer.appendChild(div);
+    });
 }
 

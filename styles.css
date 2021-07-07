@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#title{
+    border: 1px solid black;
+    text-align: center;
+}
+
+#container {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#book-container {
+    border: 1px solid black;
+    text-align: center;
+    display: flex;
+}
+
+.book {
+    font-weight: bold;
+}
