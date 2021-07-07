@@ -16,7 +16,8 @@
 #book-container {
     border: 1px solid black;
     text-align: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .book {
