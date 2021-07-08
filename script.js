@@ -12,7 +12,7 @@ function Book(title, author, pages, hasRead) {
     this.pages = Number(pages);
     this.hasRead = hasRead;
 
-    id = bookID;
+    this.id = bookID;
     bookID++;
 }
 
@@ -45,6 +45,7 @@ function displayBooks(bookArray) {
         removeBook.textContent = 'Remove from library';
         read.textContent = book.hasRead;
 
+        div.setAttribute('data-id', String(book.id));
         div.appendChild(title);
         div.appendChild(author);
         div.appendChild(pages);
@@ -55,5 +56,8 @@ function displayBooks(bookArray) {
     });
 }
 
+function removeBookFromLibrary(bookID) {
+    
+}
 
 
