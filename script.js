@@ -2,9 +2,11 @@ let myLibrary = [];
 let bookID = 0;
 const bookContainer = document.getElementById('book-container');
 const testBook = new Book('testtitle', 'test author', 23, true);
+const testBook2 = new Book('dsf', 'tefst aufdsfsfdsfthor', 55, true);
 const newBook = document.getElementById('new-book');
 newBook.addEventListener('click', createBook );
 addBookToLibrary(testBook);
+addBookToLibrary(testBook2);
 
 function Book(title, author, pages, hasRead) {
     this.title = title;
@@ -44,7 +46,10 @@ function displayBooks(bookArray) {
         pages.textContent = book.pages;
         removeBook.textContent = 'Remove from library';
         read.textContent = book.hasRead;
+        
+        removeBook.addEventListener('click', removeBookFromLibrary);
 
+        div.classList.add('book');
         div.setAttribute('data-id', String(book.id));
         div.appendChild(title);
         div.appendChild(author);
@@ -56,8 +61,23 @@ function displayBooks(bookArray) {
     });
 }
 
-function removeBookFromLibrary(bookID) {
+function removeBookFromLibrary(e) {
     
+    let myEvent = e;
+    let div = e.target.parentElement;
+    let bookID = Number(div.dataset.id);
+    console.log(bookID);
+    if (myLibrary[bookID]) delete myLibrary[bookID];
+
+    //update display so deleted book div is no longer there
+}
+
+function setRead(bookID) {
+    //grab nearest book div
+    //get and store its data attribute
+    //iterate through array and find where data attribute === id
+    //if (hasread) return false, else true
+    //update button.textcontent to reflect readstatus if necessary
 }
 
 
