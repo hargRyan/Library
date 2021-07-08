@@ -18,6 +18,18 @@ function Book(title, author, pages, hasRead) {
     bookID++;
 }
 
+Book.prototype.setReadStatus = function() {
+    if (this.hasRead) {
+        this.hasRead = false;
+    } else {
+        this.hasRead = true;
+    }
+}
+
+Book.prototype.getReadStatus = function() {
+    return this.hasRead;
+}
+
 function createBook() {
     let userTitle = prompt("Enter the title of the book.");
     let userAuthor = prompt("Enter the author of the book.");
@@ -75,13 +87,8 @@ function setRead(e) {
     let myEvent = e;
     let div = e.target.parentElement;
     let bookID = Number(div.dataset.id);
-    if (myLibrary[bookID].hasRead) {
-        myLibrary[bookID].hasRead = false;
-        e.target.textContent = false;
-    } else {
-        myLibrary[bookID].hasRead = true;
-        e.target.textContent = true;
-    }
+    myLibrary[bookID].setReadStatus();
+    e.target.textContent = myLibrary[bookID].getReadStatus();
 }
 
 
