@@ -1,4 +1,5 @@
 let myLibrary = [];
+let currentIDs = [];
 let bookID = 0;
 const bookContainer = document.getElementById('book-container');
 const testBook = new Book('testtitle', 'test author', 23, true);
@@ -7,7 +8,7 @@ const newBook = document.getElementById('new-book');
 newBook.addEventListener('click', createBook );
 addBookToLibrary(testBook);
 addBookToLibrary(testBook2);
-
+displayBooks(myLibrary);
 function Book(title, author, pages, hasRead) {
     this.title = title;
     this.author = author;
@@ -38,14 +39,31 @@ function createBook() {
 
     const newBook = new Book(userTitle, userAuthor, userPages, userHasRead);
     addBookToLibrary(newBook);
+    displayBooks(myLibrary);
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+function inLibrary () {
+    let currentLibrary = document.querySelectorAll('.book'); //gets nodelist of .book
+    
+    currentLibrary.forEach(book => {
+        if (book.dataset.id in currentIDs) return;
+        currentIDs.push(book.dataset.id); 
+        
+    });
+}
+
 function displayBooks(bookArray) {
+
+    inLibrary();
+
     bookArray.forEach(book => {
+
+        if(book.id in currentIDs) return;
+
         let div = document.createElement('div');
         let title = document.createElement('h3');
         let author = document.createElement('h3');
