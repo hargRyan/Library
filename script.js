@@ -2,27 +2,8 @@ let myLibrary = [];
 let currentIDs = [];
 let bookID = 0;
 const bookContainer = document.getElementById('book-container');
-const testBook = new Book('testtitle', 'test author', 23, true);
-const testBook2 = new Book('dsf', 'tefst aufdsfsfdsfthor', 55, true);
+
 const newBook = document.getElementById('new-book');
-
-
-newBook.addEventListener('click', createBook );
-addBookToLibrary(testBook);
-addBookToLibrary(testBook2);
-displayBooks(myLibrary);
-
-/*
-function Book(title, author, pages, hasRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = Number(pages);
-    this.hasRead = hasRead;
-
-    this.id = bookID;
-    bookID++;
-}
-*/
 
 class Book {
     constructor(title, author, pages, hasRead){
@@ -48,19 +29,6 @@ class Book {
     }
 }
 
-/*
-Book.prototype.setReadStatus = function() {
-    if (this.hasRead) {
-        this.hasRead = false;
-    } else {
-        this.hasRead = true;
-    }
-}
-
-Book.prototype.getReadStatus = function() {
-    return this.hasRead;
-}
-*/
 
 function createBook() {
     let userTitle = prompt("Enter the title of the book.");
@@ -137,8 +105,12 @@ function setRead(e) {
     let div = e.target.parentElement;
     let bookID = Number(div.dataset.id);
     myLibrary[bookID].setReadStatus();
-    e.target.textContent = myLibrary[bookID].getReadStatus();
+    e.target.textContent = myLibrary[bookID].readStatus;
 }
 
-
-console.log('tacos');
+const testBook = new Book('testtitle', 'test author', 23, true);
+const testBook2 = new Book('dsf', 'tefst aufdsfsfdsfthor', 55, true);
+newBook.addEventListener('click', createBook );
+addBookToLibrary(testBook);
+addBookToLibrary(testBook2);
+displayBooks(myLibrary);
